@@ -42,7 +42,7 @@ class CustomerAccountsTransactions extends Model
                 $transactions = $transactions->take($limit);
             }
         }
-        $transactions = $transactions->get();
+        $transactions = $transactions->orderBy('id', 'DESC')->get();
         if(!$transactions->count()) {
             return json_encode(['success' => false, 'message' => 'There is no transactions history for: '.$accountId]);
         }

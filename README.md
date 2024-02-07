@@ -27,7 +27,7 @@ For completeness, I created several users: </br>
 If customer data is not enough for you, you can expand the database by writing an additional seed. Example - mintos/database/seeders (the task did not indicate the need to add clients and accounts via the API)
 
 </br>API examples you can find in the Postman collection file: **mintos.postman_collection.json**
-Notice: When testing an API locally, you need to use the Postman Desktop Agent. Safari doesn’t support the desktop agent.
+</br>Notice: When testing an API locally, you need to use the Postman Desktop Agent. Safari doesn’t support the desktop agent.
 
 **Description:**
 
@@ -56,6 +56,3 @@ SCHEME (FK on Cascade DELETE)
 
 # Rates api
 Used api for rates collecting: https://v6.exchangerate-api.com/v6/
-
-
-
