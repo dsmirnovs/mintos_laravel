@@ -7,19 +7,12 @@ P.S. I had not worked with Symphony before, so due to lack of time, it was decid
 # Installation
 1. [x] Download project with **git clone** help
 2. [x] Copy .env.example file, as .env
-3. [x] Inside configuration file [.env] add **MINTOS_API_KEY**:
-   MINTOS_API_KEY=T7P1dBaxuhQXJyxCiDBOEfBRTyyYuK3Jkl2hXFqBvfeFmH0CksFNYP7iaOiBKNx5
-    - You can generate the api key yourself, but then the postman collection I prepared will not work<br />(In this case you will need to add x-api-key in header).
-4. [x] Inside configuration file change database configuration:<br />
-   DB_HOST=mysql<br />
-   DB_USERNAME=sail<br />
-   DB_PASSWORD=password<br />
-5. [x] Power on DOCKER on your PC
-6. [x] Install necessary pacs : **composer install** <br />(composer need to be installed in your PC)
-7. [x] RUN **docker-compose up -d** , to power on containers
-8. [x] RUN: **docker exec -it mintos_laravel-laravel.test-1 php artisan migrate:fresh --seed** <br />
+3. [x] Power on DOCKER on your PC
+4. [x] Install necessary pacs : **composer install** <br />(composer need to be installed in your PC)
+5. [x] RUN **docker-compose up -d** , to power on containers
+6. [x] RUN: **docker exec -it mintos_laravel-laravel.test-1 php artisan migrate:fresh --seed** <br />
    this will create and fill the necessary tables <br />
-9. [x] have some fun with API - http:/localhost:80
+7. [x] have some fun with API - http:/localhost:80
 
 # Working with database
 Database version: mysql Ver 8.0.32
@@ -53,7 +46,7 @@ Notice: When testing an API locally, you need to use the Postman Desktop Agent. 
 
 /api/transaction-history/{account_id}?offset=1&limit=1 - show transaction history that belongs to selected account (with pagination)
 
-P.S. all request must contains a api key
+P.S. all request must contains a api key, api key inside .env file: MINTOS_API_KEY
 
 # Running tests
 You can run tests in this way:  **docker exec -it mintos_laravel-laravel.test-1 php artisan test**
