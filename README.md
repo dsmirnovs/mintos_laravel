@@ -17,7 +17,7 @@ P.S. I had not worked with Symphony before, so due to lack of time, it was decid
 5. [x] Power on DOCKER on your PC
 6. [x] Install necessary pacs : **composer install** <br />(composer need to be installed in your PC)
 7. [x] RUN **docker-compose up -d** , to power on containers
-8. [x] RUN: **docker exec -it mintos-laravel.test-1 php artisan migrate:fresh --seed** <br />
+8. [x] RUN: **docker exec -it mintos_laravel-laravel.test-1 php artisan migrate:fresh --seed** <br />
    this will create and fill the necessary tables <br />
 9. [x] have some fun with API - http:/localhost:80
 
@@ -25,7 +25,7 @@ P.S. I had not worked with Symphony before, so due to lack of time, it was decid
 Database version: mysql Ver 8.0.32
 
 You can work with database insider container mintos-mysql-1:
-**docker exec -it mintos-mysql-1 mysql -uroot -p**;  password: password.
+**docker exec -it mintos_laravel-mysql-1 mysql -uroot -p**;  password: password.
 **USE laravel;**
 
 # Working with API
@@ -40,7 +40,7 @@ For completeness, I created several users: </br>
 </br></br>You can transfer money between accounts (within one user), view accounts, view transaction history.</br></br>
 If customer data is not enough for you, you can expand the database by writing an additional seed. Example - mintos/database/seeders (the task did not indicate the need to add clients and accounts via the API)
 
-</br>API examples you can find in the Postman collection file: **Mintos.postman_collection.json**
+</br>API examples you can find in the Postman collection file: **mintos.postman_collection.json**
 Notice: When testing an API locally, you need to use the Postman Desktop Agent. Safari doesn’t support the desktop agent.
 
 **Description:**
@@ -56,7 +56,7 @@ Notice: When testing an API locally, you need to use the Postman Desktop Agent. 
 P.S. all request must contains a api key
 
 # Running tests
-You can run tests in this way:  **docker exec -it mintos-laravel.test-1 php artisan test**
+You can run tests in this way:  **docker exec -it mintos_laravel-laravel.test-1 php artisan test**
 
 # Rates api
 Used api for rates collecting: https://v6.exchangerate-api.com/v6/
