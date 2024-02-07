@@ -14,16 +14,6 @@ P.S. I had not worked with Symphony before, so due to lack of time, it was decid
    this will create and fill the necessary tables <br />
 7. [x] have some fun with API - http:/localhost:80
 
-# Working with database
-Database version: mysql Ver 8.0.32
-
-You can work with database insider container mintos-mysql-1:
-**docker exec -it mintos_laravel-mysql-1 mysql -uroot -p**;  password: password.
-**USE laravel;**
-
-SCHEME (FK on Cascade DELETE)
-![img.png](img.png)
-
 # Working with API
 
 For completeness, I created several users: </br>
@@ -53,6 +43,16 @@ P.S. all request must contains a api key, api key inside .env file: MINTOS_API_K
 
 # Running tests
 You can run tests in this way:  **docker exec -it mintos_laravel-laravel.test-1 php artisan test**
+
+# Working with database
+Database version: mysql Ver 8.0.32
+
+You can work with database insider container mintos-mysql-1:
+**docker exec -it mintos_laravel-mysql-1 mysql -uroot -p**;  password: password.
+**USE laravel;**
+
+SCHEME (FK on Cascade DELETE)
+![img.png](img.png)
 
 # Rates api
 Used api for rates collecting: https://v6.exchangerate-api.com/v6/
