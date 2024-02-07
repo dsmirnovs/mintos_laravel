@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property float|mixed $amount_before
  * @property float|mixed $amount_after
  * @property false|mixed|string $rate_information
+ * @property mixed|string $account_currency
  */
 class CustomerAccountsTransactions extends Model
 {

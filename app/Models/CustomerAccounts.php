@@ -4,13 +4,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-
-/**
- * @property int $channel_id
- * @property string $name
- * @property string $begin_date_time
- * @property string $end_date_time
- */
 class CustomerAccounts extends Model
 {
     use HasFactory;
@@ -140,8 +133,7 @@ class CustomerAccounts extends Model
         $accounts->account_balance = $accounts->account_balance - $result;
         $accounts->save();
 
-        $this->saveToHistory($accounts->unique_account_id, $accounts->unique_client_id, 'send', $amount,
-            $currency, $balanceBefore, $accounts->account_balance, $rate);
+        $this->saveToHistory($accounts, 'send', $amount, $currency, $balanceBefore, $rate);
 
         $accounts = $this::query()
             ->where('unique_account_id', $request->input('to_account'))
@@ -168,10 +160,7 @@ class CustomerAccounts extends Model
         }
         $accounts->account_balance = $accounts->account_balance + $result;
         $accounts->save();
-
-        $this->saveToHistory($accounts->unique_account_id, $accounts->unique_client_id, 'receiced', $amount,
-            $currency, $balanceBefore, $accounts->account_balance, $rate);
-
+        $this->saveToHistory($accounts, 'receiced', $amount, $currency, $balanceBefore, $rate);
         return json_encode([
             'success' => true,
             'message' => 'the money transfer was successful'
@@ -181,27 +170,26 @@ class CustomerAccounts extends Model
 
     /**
      * Save changed data to history table
-     * @param int $accountId
-     * @param int $clientId
+     * @param CustomerAccounts $account
      * @param string $type
      * @param float $amount
      * @param string $currency
      * @param float $balanceBefore
-     * @param float $balanceAfter
      * @param array $rate
      * @return void
      */
-    public function saveToHistory(int $accountId, int $clientId, string $type, float $amount, string $currency,
-                                  float $balanceBefore, float $balanceAfter, array $rate): void
+    public function saveToHistory(CustomerAccounts $accounts, string $type, float $amount, string $currency,
+                                  float $balanceBefore, array $rate): void
     {
         $transactionHistory = new CustomerAccountsTransactions();
-        $transactionHistory->account_id = $accountId;
-        $transactionHistory->client_id = $clientId;
+        $transactionHistory->account_id = $accounts->unique_account_id;
+        $transactionHistory->client_id = $accounts->unique_client_id;
         $transactionHistory->operation_type = $type;
         $transactionHistory->operation_amount = $amount;
         $transactionHistory->operation_currency = $currency;
+        $transactionHistory->account_currency = $accounts->account_currency;
         $transactionHistory->amount_before = $balanceBefore;
-        $transactionHistory->amount_after = $balanceAfter;
+        $transactionHistory->amount_after = $accounts->account_balance;
         $transactionHistory->rate_information = json_encode($rate);
         $transactionHistory->save();
     }

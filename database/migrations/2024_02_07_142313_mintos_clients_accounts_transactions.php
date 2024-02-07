@@ -30,6 +30,7 @@ return new class extends Migration
 
             $table->float('amount_before');
             $table->float('amount_after');
+            $table->string('account_currency');
 
             $table->json('rate_information');
 
