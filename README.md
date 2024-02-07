@@ -21,7 +21,7 @@ You can work with database insider container mintos-mysql-1:
 **docker exec -it mintos_laravel-mysql-1 mysql -uroot -p**;  password: password.
 **USE laravel;**
 
-SCHEME
+SCHEME (FK on Cascade DELETE)
 ![img.png](img.png)
 
 # Working with API
