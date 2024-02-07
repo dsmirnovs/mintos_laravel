@@ -25,7 +25,7 @@ return new class extends Migration
                 ->onDelete('cascade');
 
             $table->string('operation_type');
-            $table->string('operation_amount');
+            $table->float('operation_amount');
             $table->string('operation_currency');
 
             $table->float('amount_before');
