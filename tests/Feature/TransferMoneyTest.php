@@ -45,7 +45,7 @@ class TransferMoneyTest extends TestCase
         $response = $this->post('api/transfer', $testData, ['x-api-key' => getenv('MINTOS_API_KEY')]);
         $response->assertStatus(200)
             ->assertJson([
-                'message' => 'the money transfer was successful',
+                'message' => 'The money was successfully transferred',
             ]);
     }
 
@@ -87,7 +87,7 @@ class TransferMoneyTest extends TestCase
         $response = $this->post('api/transfer', $testData, ['x-api-key' => getenv('MINTOS_API_KEY')]);
         $response->assertStatus(200)
             ->assertJson([
-                'message' => 'Cant find these accounts.You can check accounts here:/client-accounts/{client_id}',
+                'message' => 'One or all of the requested accounts were not found.You can check accounts here:/client-accounts/{client_id}',
             ]);
     }
 

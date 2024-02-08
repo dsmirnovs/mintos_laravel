@@ -24,8 +24,8 @@ class TransferController extends Controller
     }
 
     /**
-     * Show on air programmes - return in json
-     * @param int $channelNr
+     * Show accounts belongs to user
+     * @param int $clientId
      * @return string
      */
     public function showAccounts(int $clientId): string {
@@ -35,15 +35,21 @@ class TransferController extends Controller
         return $this->customerAccountsModel->getAccountsByCustomerId($clientId);
     }
 
-
-    public function showTransactions(Request $request, $accountId) {
+    /**
+     * Show all transactions belongs to concrete account (with possibility to use offser and limits)
+     * @param Request $request
+     * @param int $accountId
+     * @return string
+     */
+    public function showTransactions(Request $request, int $accountId): string
+    {
         $offset = $request->get('offset') ?? 0;
         $limit = $request->get('limit') ?? 0;
         return $this->customerAccountsTransactionsModel->getTransactionsByAccountId($accountId, $offset, $limit);
-
     }
 
     /**
+     * Transfer funds via accounts
      * @param Request $request
      * @return string
      */
@@ -52,7 +58,7 @@ class TransferController extends Controller
             'from_account' => 'required',
             'to_account' => 'required',
             'currency' => 'required|max:3',
-            'amount' => 'required'
+            'amount' => 'required|numeric|between:0,99.99'
         ]);
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 401);

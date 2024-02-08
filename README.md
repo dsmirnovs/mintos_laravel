@@ -23,7 +23,7 @@ For completeness, I created several users: </br>
 
 -and linked several accounts to them. 
 
-</br></br>You can transfer money between accounts (within one user), view accounts, view transaction history.</br></br>
+</br>You can transfer money between accounts, view accounts, view transaction history.</br></br>
 If customer data is not enough for you, you can expand the database by writing an additional seed. Example - mintos/database/seeders (the task did not indicate the need to add clients and accounts via the API)
 
 </br>API examples you can find in the Postman collection file: **mintos.postman_collection.json**

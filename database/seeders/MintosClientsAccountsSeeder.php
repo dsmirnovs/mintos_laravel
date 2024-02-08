@@ -43,6 +43,18 @@ class MintosClientsAccountsSeeder extends Seeder
                 'unique_account_id' => 5,
                 'account_currency' => 'GBP',
                 'account_balance' => 00.00,
+            ],
+            [
+                'unique_client_id' => 2,
+                'unique_account_id' => 6,
+                'account_currency' => 'AFN',
+                'account_balance' => 125.00,
+            ],
+            [
+                'unique_client_id' => 3,
+                'unique_account_id' => 7,
+                'account_currency' => 'EGP',
+                'account_balance' => 12435.00,
             ]
         ]);
     }
