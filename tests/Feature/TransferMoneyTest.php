@@ -72,7 +72,7 @@ class TransferMoneyTest extends TestCase
         $response = $this->post('api/transfer', $testData, ['x-api-key' => getenv('MINTOS_API_KEY')]);
         $response->assertStatus(200)
             ->assertJson([
-                'message' => 'Exchanged currency:USD do not belongs to provided currencies in account.',
+                'message' => 'Exchanged currency:USD does not belong to any account.',
             ]);
     }
 

@@ -58,7 +58,7 @@ class TransferController extends Controller
             'from_account' => 'required',
             'to_account' => 'required',
             'currency' => 'required|max:3',
-            'amount' => 'required|numeric|between:0,99.99'
+            'amount' => 'required|numeric|between:0,9999.99'
         ]);
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 401);

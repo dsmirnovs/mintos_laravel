@@ -31,7 +31,7 @@ If customer data is not enough for you, you can expand the database by writing a
 
 **Description:**
 
-/api/transfer - allow to transfer money from account to account (provided in mintos_clients_accounts table).
+/api/transfer - allow to transfer money from account to account (provided in mintos_clients_accounts table). You can transfer under 10.000
 
 /api/client-accounts/{client_id} - show all accounts that belongs to selected client
 
