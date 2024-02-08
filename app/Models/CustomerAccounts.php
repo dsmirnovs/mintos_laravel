@@ -102,18 +102,18 @@ class CustomerAccounts extends Model
         $accountsFrom = $this::query()
             ->where('unique_account_id', $from)
             ->first();
-        $result = $this->calculateExchange($accountsFrom, $amount, $primaryCurrency, $changeToCurrency);
+        $resultFrom = $this->calculateExchange($accountsFrom, $amount, $primaryCurrency, $changeToCurrency);
 
         //RATE ERROR
-        if($result['success'] === false) {
-            return json_encode($result);
+        if($resultFrom['success'] === false) {
+            return json_encode($resultFrom);
         }
 
         //BALANCE ERROR
-        if($accountsFrom->account_balance < $result['result']) {
+        if($accountsFrom->account_balance < $resultFrom['result']) {
             $exchangeMsg = '';
             if($primaryCurrency != $accountsFrom->account_currency) {
-                $exchangeMsg = '('.$result['result'].$accountsFrom->account_currency.') ';
+                $exchangeMsg = '('.$resultFrom['result'].$accountsFrom->account_currency.') ';
             }
             return json_encode(
                 [
@@ -127,7 +127,7 @@ class CustomerAccounts extends Model
 
         //PROCESSED
         $fromBalanceBefore = $accountsFrom->account_balance;
-        $accountsFrom->account_balance = $accountsFrom->account_balance - $result['result'];
+        $accountsFrom->account_balance = $accountsFrom->account_balance - $resultFrom['result'];
 
         $accountsTo = $this::query()
             ->where('unique_account_id', $request->input('to_account'))
@@ -142,7 +142,7 @@ class CustomerAccounts extends Model
 
         //ALL PASSED TRY TO SAVE DATA
         $accountsFrom->save();
-        $this->saveToHistory($accountsFrom, 'send', $amount, $currency, $fromBalanceBefore, $result['rate']);
+        $this->saveToHistory($accountsFrom, 'send', $amount, $currency, $fromBalanceBefore, $resultFrom['rate']);
 
         $accountsTo->save();
         $this->saveToHistory($accountsTo, 'received', $amount, $currency, $toBalanceBefore, $result['rate']);
