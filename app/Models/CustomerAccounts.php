@@ -178,6 +178,7 @@ class CustomerAccounts extends Model
 
 
     /**
+     * Get rate from external api
      * @param string $currency
      * @param string $toCurrency
      * @return array
@@ -211,7 +212,15 @@ class CustomerAccounts extends Model
         }
     }
 
-    public function calculateExchange($accounts, $amount, $primaryCurrency, $changeToCurrency) {
+    /**
+     * Calculate needed exchange
+     * @param object $accounts
+     * @param float $amount
+     * @param string $primaryCurrency
+     * @param string $changeToCurrency
+     * @return array
+     */
+    public function calculateExchange(object $accounts, float $amount, string $primaryCurrency, string $changeToCurrency) : array{
         if($accounts->account_currency != $primaryCurrency) {
             $rate = $this->getRate($primaryCurrency, $changeToCurrency);
             if($rate['success'] === false) {
